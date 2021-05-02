@@ -18,36 +18,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ********************************************************************************/
 
-#ifndef TIMESYNC_H
-#define TIMESYNC_H
+#ifndef TRAYICON_H
+#define TRAYICON_H
 
-#include "trayicon.h"
-
-#include <QObject>
-#include <QApplication>
+#include <QSystemTrayIcon>
+#include <QMenu>
 
 namespace ts {
-class TimeSync : public QObject
+class TrayIcon : public QSystemTrayIcon
 {
-    Q_OBJECT
-
 private:
-    int argc; char** argv;
-    QApplication *qapp;
-
-    TrayIcon *trayIcon;
+    QMenu menu;
 
 public:
-    explicit TimeSync(QObject *parent = nullptr);
-    TimeSync(int, char**);
-    ~TimeSync();
+    TrayIcon();
+    ~TrayIcon();
 
-    void start();
-    int retMain();
-
-signals:
+    void addAction(QAction*);
+    QAction * addSeparator();
 
 };
 }
 
-#endif // TIMESYNC_H
+#endif // TRAYICON_H

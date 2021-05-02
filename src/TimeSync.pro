@@ -14,7 +14,8 @@ SOURCES += \
     main.cpp \
     qntp/src/qntp/NtpClient.cpp \
     qntp/src/qntp/NtpReply.cpp \
-    timesync.cpp
+    timesync.cpp \
+    trayicon.cpp
 
 HEADERS += \
     qntp/include/qntp/NtpClient.h \
@@ -27,7 +28,8 @@ HEADERS += \
     qntp/src/qntp/NtpTimestamp.h \
     qntp/src/qntp/QNtp.h \
     qntp/src/qntp/config.h \
-    timesync.h
+    timesync.h \
+    trayicon.h
 
 FORMS +=
 

@@ -26,9 +26,17 @@ TimeSync::TimeSync(QObject *parent) : QObject(parent) {}
 
 TimeSync::TimeSync(int argc, char **argv) { this->argc = argc; this->argv = argv; }
 
+TimeSync::~TimeSync()
+{
+    delete qapp; delete trayIcon;
+}
+
 int TimeSync::retMain() { return qapp->exec(); }
 
 void TimeSync::start()
 {
     qapp = new QApplication(argc, argv);
+
+    trayIcon = new TrayIcon;
+    trayIcon->show();
 }
