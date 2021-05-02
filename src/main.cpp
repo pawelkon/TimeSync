@@ -1,7 +1,9 @@
-#include <QApplication>
+#include "timesync.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    return a.exec();
+    ts::TimeSync ts(argc, argv);
+    ts.start();
+
+    return ts.retMain();
 }
