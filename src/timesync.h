@@ -36,6 +36,7 @@ private:
     QApplication *qapp;
 
     TrayIcon *trayIcon;
+    QAction *quitAction;
 
 public:
     explicit TimeSync(QObject *parent = nullptr);

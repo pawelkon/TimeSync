@@ -28,7 +28,7 @@ TimeSync::TimeSync(int argc, char **argv) { this->argc = argc; this->argv = argv
 
 TimeSync::~TimeSync()
 {
-    delete qapp; delete trayIcon;
+    delete qapp; delete trayIcon; delete quitAction;
 }
 
 int TimeSync::retMain() { return qapp->exec(); }
@@ -39,4 +39,8 @@ void TimeSync::start()
 
     trayIcon = new TrayIcon;
     trayIcon->show();
+
+    quitAction = new QAction("quit");
+    connect(quitAction, &QAction::triggered, &QApplication::quit);
+    trayIcon->addAction(quitAction);
 }
