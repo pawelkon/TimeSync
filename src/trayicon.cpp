@@ -34,9 +34,3 @@ TrayIcon::TrayIcon()
 TrayIcon::~TrayIcon() { delete _menu; }
 
 QMenu * TrayIcon::menu() { return _menu; }
-
-
-
-
-
-
