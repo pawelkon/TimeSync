@@ -39,4 +39,8 @@ void TimeSync::start()
 
     trayIcon = new TrayIcon;
     trayIcon->show();
+
+    quitAction = new QAction("quit");
+    connect(quitAction, &QAction::triggered, &QApplication::quit);
+    trayIcon->menu()->addAction(quitAction);
 }

@@ -32,6 +32,9 @@ class TimeSync : public QObject
     Q_OBJECT
 
 private:
+    QAction *quitAction;
+
+private:
     int argc; char** argv;
     QApplication *qapp;
 
