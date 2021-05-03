@@ -28,14 +28,13 @@ namespace ts {
 class TrayIcon : public QSystemTrayIcon
 {
 private:
-    QMenu menu;
+    QMenu *_menu;
 
 public:
     TrayIcon();
     ~TrayIcon();
 
-    void addAction(QAction*);
-    QAction * addSeparator();
+    QMenu * menu();
 
 };
 }

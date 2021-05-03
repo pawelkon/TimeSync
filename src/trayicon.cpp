@@ -25,17 +25,17 @@ using namespace ts;
 TrayIcon::TrayIcon()
 {
     QIcon ico(":img/trayicon.png");
-
     this->setIcon(ico);
 
-    this->setContextMenu(&menu);
+    _menu = new QMenu();
+    this->setContextMenu(_menu);
 }
 
-TrayIcon::~TrayIcon() {}
+TrayIcon::~TrayIcon() { delete _menu; }
 
-void TrayIcon::addAction(QAction *acn) { menu.addAction(acn); }
+QMenu * TrayIcon::menu() { return _menu; }
 
-QAction *TrayIcon::addSeparator() { return menu.addSeparator(); }
+
 
 
 
