@@ -27,6 +27,7 @@ TrayIcon::TrayIcon()
     QIcon ico(":img/trayicon.png");
 
     this->setIcon(ico);
+
     this->setContextMenu(&menu);
 }
 
