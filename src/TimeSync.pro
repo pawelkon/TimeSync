@@ -16,6 +16,7 @@ SOURCES += \
     qntp/src/qntp/NtpReply.cpp \
     timesync.cpp \
     trayicon.cpp \
+    trayiconmenu.cpp \
     winsystime.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     qntp/src/qntp/config.h \
     timesync.h \
     trayicon.h \
+    trayiconmenu.h \
     winsystime.h
 
 FORMS +=
