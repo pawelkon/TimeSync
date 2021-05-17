@@ -22,23 +22,32 @@ SOFTWARE.
 #define TIMESYNC_H
 
 #include "trayicon.h"
+#include "trayiconmenu.h"
 
-#include <QObject>
+#include <qntp/include/qntp/NtpClient.h>
+
 #include <QApplication>
+#include <QTimer>
+#include <QHostAddress>
 
 namespace ts {
 class TimeSync : public QObject
 {
     Q_OBJECT
 
-private:
-    QAction *quitAction;
+public:
+    static const int NTP_PORT = 123;
 
 private:
     int argc; char** argv;
     QApplication *qapp;
 
     TrayIcon *trayIcon;
+    TrayIconMenu *menu;
+
+    NtpClient *NTPClient;
+    QTimer *timeoutTimer;
+    QHostAddress currentHost;
 
 public:
     explicit TimeSync(QObject *parent = nullptr);
@@ -48,9 +57,33 @@ public:
     void start();
     int retMain();
 
+private:
+    void sync(QAction*);
+
+    void startTimer(int);
+
+private slots:
+    void showConnProblemMsg(const QHostAddress&);
+    void showSyncDoneMsg(const QHostAddress&, const QDateTime&, const QDateTime&);
+    void showNoRootErrorMsg();
+    void NTPReply(const QHostAddress&, quint16, const NtpReply&);
+    void syncProblem();
+
 signals:
 
 };
+
+inline const QList<QHostAddress> NTPServerList()
+{
+    QList<QHostAddress> list;
+    list.append(QHostAddress("194.29.130.252"));
+    list.append(QHostAddress("195.187.245.55"));
+
+    return list;
+};
+
 }
 
 #endif // TIMESYNC_H
+
+
