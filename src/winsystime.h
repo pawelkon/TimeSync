@@ -32,7 +32,7 @@ class WinSysTime : public QObject
 public:
     explicit WinSysTime(QObject *parent = nullptr);
 
-    void setDateTime(QDateTime);
+    bool setDateTime(const QDateTime&, bool = false);
 
 signals:
 

@@ -22,11 +22,13 @@ SOFTWARE.
 
 #include <windows.h>
 
+#include <QTimeZone>
+
 using namespace ts;
 
 WinSysTime::WinSysTime(QObject *parent) : QObject(parent) {}
 
-void WinSysTime::setDateTime(QDateTime dt)
+bool WinSysTime::setDateTime(const QDateTime &dt, bool offset)
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
@@ -35,9 +37,13 @@ void WinSysTime::setDateTime(QDateTime dt)
     st.wMonth = dt.date().month();
     st.wYear = dt.date().year();
 
-    st.wHour = dt.time().hour();
+    int hour = dt.time().hour();
+    if(offset) hour -= QTimeZone::systemTimeZone().offsetFromUtc(dt) / 3600;
+    st.wHour = hour;
+
     st.wMinute = dt.time().minute();
     st.wSecond = dt.time().second();
+    st.wMilliseconds = dt.time().msec();
 
-    SetSystemTime(&st);
+    return SetSystemTime(&st);
 }
